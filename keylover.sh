@@ -32,11 +32,11 @@ if [ -d "$1" ]; then
 
 
   # Eliminar el directorio
-  #rm -rf "$1"
+  rm -rf "$1"
 
   # Elimina el archivo comprimido
 
-  #rm -rf "$1.tar.gz"
+  rm -rf "$1.tar.gz"
 
   exit 1
 
@@ -67,11 +67,11 @@ if [ -f "$1" ]; then
 
   # Eliminar el archivo comprimido
 
-  #rm -rf "$1.tar.gz"
+  rm -rf "$1.tar.gz"
 
   # Eliminar el archivo encriptado
 
-  #rm -rf "$1"
+  rm -rf "$1"
 
   exit 1
 
