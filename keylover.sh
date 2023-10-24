@@ -9,9 +9,18 @@ fi
 # Si es un directorio lo comprime y encripta
 
 if [ -d "$1" ]; then
+
+  # Si el último caracter es / o \ lo elimina
+
+  if [[ "$1" == */ ]]; then
+    ruta=${1::-1}
+    #echo $ruta
+  else
+    ruta=$1
+  fi
   
   # Comprimir el directorio
-  tar -cvf "$1.tar.gz" "$1"
+  tar -cvf "$ruta.tar.gz" "$ruta"
 
   # Solicitar parámetro de contraseña
 
@@ -19,15 +28,15 @@ if [ -d "$1" ]; then
 
   # Encriptar el archivo comprimido
 
-  openssl enc -aes-256-cbc -salt -pbkdf2 -in "./$1.tar.gz" -out "./$1.keylover" -pass pass:$password
+  openssl enc -aes-256-cbc -salt -pbkdf2 -in "./$ruta.tar.gz" -out "./$ruta.keylover" -pass pass:$password
 
 
   # Eliminar el directorio
-  rm -rf "$1"
+  #rm -rf "$1"
 
   # Elimina el archivo comprimido
 
-  rm -rf "$1.tar.gz"
+  #rm -rf "$1.tar.gz"
 
   exit 1
 
@@ -58,17 +67,12 @@ if [ -f "$1" ]; then
 
   # Eliminar el archivo comprimido
 
-  rm -rf "$1.tar.gz"
+  #rm -rf "$1.tar.gz"
 
   # Eliminar el archivo encriptado
 
-  rm -rf "$1"
+  #rm -rf "$1"
 
   exit 1
 
 fi
-
-
-
-
-
